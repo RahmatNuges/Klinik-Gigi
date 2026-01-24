@@ -1,0 +1,37 @@
+{
+  "name": "klinik-gigi",
+  "version": "1.0.0",
+  "description": "📋 Ringkasan Project Website ini dibangun sebagai asisten digital 24/7 untuk Toto Dentist. Fokus utama adalah untuk meningkatkan brand awareness dan mempermudah pasien melakukan booking online. 🎯 Target & Tujuan Target Pasien: Anak muda, pasien estetik Tujuan Utama: menunjukkan identitas klinik Nilai Unik Klinik: Murah tapi berkualitas 🛠️ Tech Stack & Fitur Sistem Booking: WhatsApp  Fitur Kunci: Scalling, behel,  Local SEO & Google Maps Integration: Link maps : https://maps.app.goo.gl/tzQdGWvVWYpe3oyCA Techstack (flexible bisa berubah jika perlu): 🚀 Next.js 14 React framework for SSR & performance 🎨 TailwindCSS Utility-first styling for responsiveness 🏃 Framer Motion Smooth animations & interactions 🔡 React Icons Icon library for UI elements 🔍 TypeScript Type safety & developer experience 🎨 Branding & Aset Vibe: Modern, bersih Warna Utama: Hijau, biru Logo: Generate nano banana Foto : Generate nano banana Note : kurangi penggunaan elemen berlebih, gunakan foto real (orang maupun benda) agar terlihat profesional dan terpercaya. 🚀 Instruksi Deployment 1.Konfigurasi domain di [NAMA_PROVIDER]. 2.Hubungkan webhook WhatsApp ke nomor [NOMOR_ADMIN]. 3.Sync Google Business Profile.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.29.0",
+    "lucide-react": "^0.563.0",
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  }
+}
