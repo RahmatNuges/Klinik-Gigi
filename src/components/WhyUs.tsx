@@ -18,7 +18,7 @@ export default function WhyUs() {
             image: "/images/real/interaction.png"
         },
         {
-            title: "Klinik Nyaman dan Bersih",
+            title: "Klinik Nyaman & Bersih",
             desc: "Desain klinik modern dan lifestyle-oriented untuk anak muda.",
             image: "/images/real/lounge.png"
         }
