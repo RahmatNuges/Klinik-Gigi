@@ -1,6 +1,11 @@
+"use client";
 import Image from "next/image";
+import { useRef } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export default function WhyUs() {
+    const scrollRef = useRef<HTMLDivElement>(null);
+
     const reasons = [
         {
             title: "Dokter Profesional",
@@ -24,15 +29,77 @@ export default function WhyUs() {
         }
     ];
 
+    const scroll = (direction: "left" | "right") => {
+        if (scrollRef.current) {
+            const scrollAmount = 280;
+            scrollRef.current.scrollBy({
+                left: direction === "left" ? -scrollAmount : scrollAmount,
+                behavior: "smooth"
+            });
+        }
+    };
+
     return (
-        <section className="py-24 bg-white">
+        <section className="py-16 lg:py-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-10 lg:mb-16">
                     <h2 className="text-primary-green font-bold tracking-widest uppercase text-sm mb-4">Mengapa Toto Dental?</h2>
-                    <p className="text-3xl md:text-4xl font-bold text-primary-blue">Membangun Kepercayaan Melalui <br className="hidden md:block" /> Kualitas Pelayanan</p>
+                    <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-blue">Membangun Kepercayaan Melalui <br className="hidden md:block" /> Kualitas Pelayanan</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {/* Mobile: Horizontal Scroll Carousel */}
+                <div className="lg:hidden relative">
+                    {/* Scroll Indicators */}
+                    <div className="flex justify-center gap-2 mb-4">
+                        <button
+                            onClick={() => scroll("left")}
+                            className="w-10 h-10 rounded-full bg-brand-soft flex items-center justify-center text-primary-blue hover:bg-primary-blue hover:text-white transition-colors"
+                        >
+                            <FaChevronLeft />
+                        </button>
+                        <button
+                            onClick={() => scroll("right")}
+                            className="w-10 h-10 rounded-full bg-brand-soft flex items-center justify-center text-primary-blue hover:bg-primary-blue hover:text-white transition-colors"
+                        >
+                            <FaChevronRight />
+                        </button>
+                    </div>
+
+                    <div
+                        ref={scrollRef}
+                        className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4"
+                        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                    >
+                        {reasons.map((item, i) => (
+                            <div
+                                key={i}
+                                className="flex-shrink-0 w-[260px] snap-center group overflow-hidden rounded-3xl bg-brand-soft shadow-sm"
+                            >
+                                <div className="relative h-40 w-full overflow-hidden">
+                                    <Image
+                                        src={item.image}
+                                        alt={item.title}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-primary-blue/10"></div>
+                                </div>
+                                <div className="p-5">
+                                    <h3 className="text-lg font-bold text-primary-blue mb-2">{item.title}</h3>
+                                    <p className="text-slate-500 text-sm leading-relaxed">
+                                        {item.desc}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Scroll hint */}
+                    <p className="text-center text-xs text-slate-400 mt-2">← Geser untuk melihat lainnya →</p>
+                </div>
+
+                {/* Desktop: Grid Layout */}
+                <div className="hidden lg:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {reasons.map((item, i) => (
                         <div key={i} className="group overflow-hidden rounded-3xl bg-brand-soft shadow-sm hover:shadow-xl transition-all duration-300">
                             <div className="relative h-48 w-full overflow-hidden">
