@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
+import StickyFooter from "@/components/StickyFooter";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
         <html lang="id">
             <body className={`${inter.variable} ${poppins.variable} font-body antialiased`}>
                 {children}
+                <StickyFooter />
             </body>
         </html>
     );

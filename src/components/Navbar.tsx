@@ -53,13 +53,21 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* Mobile Menu Toggle */}
-                <button
-                    className="md:hidden text-primary-blue text-2xl focus:outline-none"
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                >
-                    {isMobileMenuOpen ? "✕" : "☰"}
-                </button>
+                {/* Mobile Menu & CTA */}
+                <div className="md:hidden flex items-center gap-3">
+                    <Link
+                        href="https://wa.me/628123456789"
+                        className="bg-primary-blue text-white px-4 py-2 rounded-full font-bold text-xs shadow-md"
+                    >
+                        BOOKING
+                    </Link>
+                    <button
+                        className="text-primary-blue text-2xl focus:outline-none p-1"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        {isMobileMenuOpen ? "✕" : "☰"}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Dropdown */}

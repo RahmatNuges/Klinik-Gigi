@@ -33,32 +33,9 @@ export default function Hero() {
     const currentImages = isMobile ? mobileImages : desktopImages;
 
     return (
-        <section className="relative min-h-screen lg:min-h-[90vh] flex items-center overflow-hidden">
+        <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white lg:bg-gradient-to-br lg:from-white lg:via-slate-50 lg:to-emerald-50/20">
 
-            {/* Mobile: Full Background Image with Dark Overlay */}
-            <div className="lg:hidden absolute inset-0 z-0">
-                <AnimatePresence initial={false}>
-                    <motion.div
-                        key={currentImages[currentImageIndex]}
-                        initial={{ x: "100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "-100%" }}
-                        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-                        className="absolute inset-0"
-                    >
-                        <Image
-                            src={currentImages[currentImageIndex]}
-                            alt="Background"
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </motion.div>
-                </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-b from-primary-blue/80 via-primary-blue/70 to-primary-blue/90" />
-            </div>
-
-            {/* Desktop: Original gradient background */}
+            {/* Desktop Background Gradient */}
             <div className="hidden lg:block absolute inset-0 bg-gradient-to-br from-brand-soft via-white to-primary-green/5 -z-10" />
 
             {/* Desktop Decorative Elements */}
@@ -81,32 +58,62 @@ export default function Hero() {
                 <FaHeart />
             </motion.div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 pt-24 pb-16 lg:pt-28 lg:pb-48">
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 w-full relative z-10 pt-0 lg:pt-28 lg:pb-48">
+                <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-                    {/* Left Content */}
+                    {/* Mobile: Seamless Image Section Above Text */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="lg:hidden w-full relative"
+                    >
+                        <div className="relative h-[45vh] sm:h-[55vh] w-full overflow-hidden">
+                            <AnimatePresence initial={false}>
+                                <motion.div
+                                    key={currentImages[currentImageIndex]}
+                                    initial={{ x: "100%", opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    exit={{ x: "-100%", opacity: 0 }}
+                                    transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                                    className="absolute inset-0"
+                                >
+                                    <Image
+                                        src={currentImages[currentImageIndex]}
+                                        alt="Dashboard Clinic"
+                                        fill
+                                        className="object-cover"
+                                        priority
+                                    />
+                                </motion.div>
+                            </AnimatePresence>
+
+                            {/* Bottom Gradient Blur to blend with text content */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white z-10" />
+                        </div>
+                    </motion.div>
+
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-center lg:text-left"
+                        className="text-center lg:text-left px-4 sm:px-6 lg:px-0"
                     >
                         <motion.span
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-white/20 lg:bg-white border border-white/30 lg:border-slate-200 text-white lg:text-primary-blue font-bold text-sm mb-6 backdrop-blur-sm lg:backdrop-blur-none shadow-sm tracking-wide"
+                            className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-emerald-50 lg:bg-white border border-emerald-100 lg:border-slate-200 text-primary-blue font-bold text-xs sm:text-sm mb-6 shadow-sm tracking-wide"
                         >
-                            <span>🦷</span> Selamat Datang di Toto Dental
+                            <span className="w-0 h-0 rounded-full bg-emerald-500 animate-pulse" /> Selamat Datang di Toto Dental
                         </motion.span>
 
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.15] mb-6 font-heading">
-                            <span className="text-white lg:text-primary-blue drop-shadow-sm lg:drop-shadow-none">
+                            <span className="text-primary-blue">
                                 Senyum Sehat,
                             </span>
                             <br />
                             <span className="relative inline-block">
-                                <span className="text-primary-green lg:text-primary-green drop-shadow-sm lg:drop-shadow-none">
+                                <span className="text-primary-green italic lg:not-italic">
                                     Keluarga Bahagia.
                                 </span>
                                 {/* Underline decoration - Desktop only */}
@@ -128,23 +135,25 @@ export default function Hero() {
                             </span>
                         </h1>
 
-                        <p className="text-base sm:text-lg text-white/90 lg:text-slate-600 mb-8 lg:mb-10 leading-relaxed font-medium max-w-lg mx-auto lg:mx-0">
-                            Klinik gigi modern dengan suasana yang <i>homey</i> dan menyenangkan. Kami siap merawat senyum Anda dengan teknologi terkini dan harga terjangkau.
+                        <p className="text-base sm:text-lg text-slate-600 mb-8 lg:mb-10 leading-relaxed font-medium max-w-lg mx-auto lg:mx-0">
+                            {isMobile
+                                ? "Klinik gigi modern dengan pelayanan ramah dan harga terjangkau."
+                                : "Klinik gigi modern dengan suasana yang homey dan menyenangkan. Kami siap merawat senyum Anda dengan teknologi terkini dan harga terjangkau."}
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                             <Link
                                 href="https://wa.me/628123456789"
-                                className="group bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg flex items-center justify-center gap-3 transition-all duration-300 transform hover:-translate-y-1"
+                                className="group bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-emerald-100 flex items-center justify-center gap-3 transition-all duration-300 transform hover:-translate-y-1"
                             >
                                 <FaWhatsapp className="text-2xl group-hover:scale-110 transition-transform" />
                                 Booking Sekarang
                             </Link>
                             <Link
                                 href="/layanan"
-                                className="bg-white hover:bg-slate-50 text-primary-blue border-2 border-white lg:border-primary-blue px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1 shadow-md hover:shadow-lg lg:hover:bg-primary-blue lg:hover:text-white"
+                                className="bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 lg:border-primary-blue lg:text-primary-blue px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1 shadow-sm hover:shadow-md lg:hover:bg-primary-blue lg:hover:text-white"
                             >
-                                Lihat Layanan Kami
+                                Lihat Layanan
                             </Link>
                         </div>
 
@@ -152,8 +161,8 @@ export default function Hero() {
                         <div className="mt-8 lg:mt-10 flex items-center justify-center lg:justify-start gap-4">
                             <div className="flex -space-x-3">
                                 {[1, 2, 3].map(i => (
-                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-white/20 lg:bg-gradient-to-br lg:from-slate-100 lg:to-slate-200 flex items-center justify-center text-white lg:text-slate-400 text-xs font-bold backdrop-blur-sm lg:backdrop-blur-none">
-                                        {i === 1 ? "👨" : i === 2 ? "👩" : "👴"}
+                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center text-slate-400 text-xs font-bold">
+                                        {i === 1 ? "" : i === 2 ? "" : ""}
                                     </div>
                                 ))}
                             </div>
@@ -161,24 +170,11 @@ export default function Hero() {
                                 <div className="flex text-yellow-400 text-xs mb-1">
                                     {[...Array(5)].map((_, i) => <FaStar key={i} />)}
                                 </div>
-                                <p className="text-sm font-bold text-white/90 lg:text-slate-600">
-                                    Dipercaya <span className="text-white lg:text-primary-blue">2,000+ Pasien</span>
+                                <p className="text-sm font-bold text-slate-600">
+                                    Dipercaya <span className="text-primary-blue">2,000+ Pasien</span>
                                 </p>
                             </div>
                         </div>
-
-                        {/* Mobile: Shield badge */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6 }}
-                            className="lg:hidden mt-8 flex justify-center"
-                        >
-                            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
-                                <FaShieldAlt className="text-primary-green" />
-                                <span className="text-white text-sm font-bold">Peralatan 100% Steril</span>
-                            </div>
-                        </motion.div>
                     </motion.div>
 
                     {/* Right Visual - Desktop Only with Image Carousel */}
@@ -195,7 +191,7 @@ export default function Hero() {
                                 className="absolute inset-0 bg-gradient-to-tr from-primary-blue to-primary-green rounded-[40%_60%_70%_30%/40%_50%_60%_50%] opacity-10 lg:scale-110"
                             />
 
-                            <div className="relative w-full h-full rounded-[40px] overflow-hidden border-8 border-white shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <div className="relative w-full h-full rounded-[40px] overflow-hidden border-8 border-white shadow-2xl transition-transform duration-500">
                                 <AnimatePresence initial={false}>
                                     <motion.div
                                         key={desktopImages[currentImageIndex]}

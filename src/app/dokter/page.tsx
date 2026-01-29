@@ -6,9 +6,7 @@ export default function DokterPage() {
     return (
         <main className="min-h-screen">
             <Navbar />
-            <div className="pt-24">
-                <Doctors />
-            </div>
+            <Doctors showAll={true} />
             <Footer />
         </main>
     );
