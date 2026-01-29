@@ -1,6 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaWhatsapp, FaCalendarCheck, FaMapMarkerAlt } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 

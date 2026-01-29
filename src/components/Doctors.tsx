@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaWhatsapp } from "react-icons/fa";
 
 interface DoctorsProps {
     showAll?: boolean;
