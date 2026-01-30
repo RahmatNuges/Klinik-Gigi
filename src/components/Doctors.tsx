@@ -32,7 +32,7 @@ export default function Doctors({ showAll = false }: DoctorsProps) {
             bio: "Memastikan pengalaman ke dokter gigi yang menyenangkan dan ramah bagi buah hati Anda."
         },
         {
-            name: "drg. Kevin Wijaya",
+            name: "drg. Jena Rosalia",
             specialty: "Spesialis Bedah Mulut",
             image: "/images/doctors/doctor4.png",
             bio: "Ahli dalam prosedur bedah kompleks termasuk pencabutan gigi bungsu dan implan."

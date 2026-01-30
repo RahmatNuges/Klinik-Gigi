@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { FaWhatsapp, FaStar, FaShieldAlt, FaTooth, FaHeart } from "react-icons/fa";
+import { FaWhatsapp, FaStar, FaShieldAlt, FaTooth } from "react-icons/fa";
 
 export default function Hero() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -50,13 +50,6 @@ export default function Hero() {
             >
                 <FaTooth />
             </motion.div>
-            <motion.div
-                animate={{ y: [0, 10, 0], rotate: [0, -5, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-40 right-32 text-primary-blue/15 text-5xl hidden lg:block"
-            >
-                <FaHeart />
-            </motion.div>
 
             <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 w-full relative z-10 pt-0 lg:pt-28 lg:pb-48">
                 <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -102,7 +95,7 @@ export default function Hero() {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-emerald-50 lg:bg-white border border-emerald-100 lg:border-slate-200 text-primary-blue font-bold text-xs sm:text-sm mb-6 shadow-sm tracking-wide"
+                            className="hidden xl:inline-flex items-center gap-2 py-2 px-5 rounded-full bg-white/20 xl:bg-white border border-white/30 xl:border-slate-200 text-white xl:text-primary-blue font-bold text-sm mb-6 backdrop-blur-sm xl:backdrop-blur-none shadow-sm tracking-wide"
                         >
                             <span className="w-0 h-0 rounded-full bg-emerald-500 animate-pulse" /> Selamat Datang di Toto Dental
                         </motion.span>

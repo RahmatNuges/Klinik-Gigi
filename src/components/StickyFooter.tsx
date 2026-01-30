@@ -6,21 +6,11 @@ import Link from "next/link";
 
 export default function StickyFooter() {
     const [isVisible, setIsVisible] = useState(false);
-    const [isAtBottom, setIsAtBottom] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            // Show bar after scrolling 300px
-            const scrollY = window.scrollY;
-            setIsVisible(scrollY > 300);
-
-            // Detect bottom of page (near footer)
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const scrollPosition = scrollY + windowHeight;
-
-            // Adjust threshold as needed (e.g., 100px from bottom)
-            setIsAtBottom(scrollPosition > documentHeight - 150);
+            // Show button after scrolling 300px
+            setIsVisible(window.scrollY > 300);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -31,47 +21,22 @@ export default function StickyFooter() {
         <AnimatePresence>
             {isVisible && (
                 <motion.div
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 100, opacity: 0 }}
-                    className={`fixed bottom-0 left-0 w-full z-50 lg:hidden px-4 pb-6 pt-2 pointer-events-none flex ${isAtBottom ? "justify-end" : "justify-center"}`}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0, opacity: 0 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="fixed bottom-6 right-6 z-50 lg:hidden"
                 >
-                    <motion.div
-                        layout
-                        initial={false}
-                        animate={{
-                            width: isAtBottom ? "64px" : "100%",
-                            maxWidth: isAtBottom ? "64px" : "448px",
-                            borderRadius: isAtBottom ? "32px" : "16px",
-                        }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 30,
-                            layout: { duration: 0.3 }
-                        }}
-                        className="bg-white/90 backdrop-blur-xl border border-white/20 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] p-2 pointer-events-auto overflow-hidden flex items-center justify-center"
+                    <Link
+                        href="https://wa.me/628123456789"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center w-14 h-14 bg-emerald-500 text-white rounded-full shadow-lg shadow-emerald-200 hover:bg-emerald-600 transition-colors"
+                        aria-label="Chat WhatsApp"
                     >
-                        <Link
-                            href="https://wa.me/628123456789"
-                            className={`bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center gap-3 shadow-lg shadow-emerald-200 transition-all active:scale-95 ${isAtBottom ? "w-12 h-12 rounded-full" : "w-full py-4 rounded-xl"
-                                }`}
-                        >
-                            <FaWhatsapp className={`${isAtBottom ? "text-2xl" : "text-2xl"}`} />
-                            <AnimatePresence>
-                                {!isAtBottom && (
-                                    <motion.span
-                                        initial={{ opacity: 0, width: 0 }}
-                                        animate={{ opacity: 1, width: "auto" }}
-                                        exit={{ opacity: 0, width: 0 }}
-                                        className="text-sm font-bold whitespace-nowrap"
-                                    >
-                                        Konsultasi WhatsApp
-                                    </motion.span>
-                                )}
-                            </AnimatePresence>
-                        </Link>
-                    </motion.div>
+                        <FaWhatsapp className="text-3xl" />
+                    </Link>
                 </motion.div>
             )}
         </AnimatePresence>
